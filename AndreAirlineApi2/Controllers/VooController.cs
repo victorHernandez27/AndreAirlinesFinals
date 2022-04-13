@@ -1,6 +1,7 @@
 ﻿using AndreAirlineApi2.Data.Repositorios;
 using AndreAirlineApi2.Model;
 using AndreAirlineApi2.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -20,18 +21,21 @@ namespace AndreAirlineApi2.Controllers
         }
 
         [HttpGet("obter/{id}")]
+        [Authorize]
         public IActionResult Obter(string id)
         {
             return Ok(_respositoy.Find(id));
         }
 
         [HttpGet("listar")]
+        [Authorize]
         public IActionResult Listar()
         {
             return Ok(_respositoy.List(orderBy: p => p.Id));
         }
 
         [HttpPost("adicionar")]
+        [Authorize]
         public IActionResult Adicionar(Voo voo)
         {
             try
@@ -47,6 +51,7 @@ namespace AndreAirlineApi2.Controllers
         }
 
         [HttpPut("atualizar")]
+        [Authorize]
         public IActionResult Atualizar(Voo voo)
         {
             try
@@ -64,6 +69,7 @@ namespace AndreAirlineApi2.Controllers
         }
 
         [HttpDelete("remover/{id}")]
+        [Authorize]
         public IActionResult Remover(string id)
         {
             try
